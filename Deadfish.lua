@@ -13,7 +13,16 @@ players.PlayerAdded:Connect(function(playa)
      i = i + 1
      achar = string.sub(args[1], i, i)
      if achar == "i" then
-     
+      acc = acc + 1
+     end
+     if achar == "d" then
+      acc = acc - 1
+     end
+     if achar == "s" then
+      acc = acc * acc
+     end
+     if achar == "o" then
+      Chat:Chat(playa.character, "Output: "..acc, Enum.ChatCor.White)
      end
     end
    end
