@@ -35,7 +35,9 @@ players.PlayerAdded:Connect(function(playa)
     if args[1] == "math" then
     
     end
- 
+    if args[1] == "switch" then
+    
+    end
    end
  end)
 end)
