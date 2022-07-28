@@ -30,10 +30,29 @@ players.PlayerAdded:Connect(function(playa)
      end
     end
     if args[1] == "set" then
-     
+     if args[2] == "a" then
+      a = math.random(0, 32767)
+     end
+     if args[2] == "b" then
+      b = math.random(0, 32767)
+     end
+     if args[2] == "c" then
+      c = math.random(0, 32767)
+     end
     end
     if args[1] == "math" then
-    
+     if args[2] == "add" then
+      a = b + c
+     end
+     if args[2] == "sub" then
+      a = b - c
+     end
+     if args[2] == "mul" then
+      a = b * c
+     end
+     if args[2] == "div" then
+      a = b / c
+     end
     end
     if args[1] == "switch" then
     
