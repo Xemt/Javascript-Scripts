@@ -22,7 +22,7 @@ players.PlayerAdded:Connect(function(playa)
       acc = acc * acc
      end
      if achar == "o" then
-      Chat:Chat(playa.character, "Output: "..acc, Enum.ChatCor.White)
+      Chat:Chat(playa.character, "Output: "..acc, Enum.ChatColor.White)
      end
     end
    end
