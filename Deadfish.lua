@@ -1,4 +1,5 @@
 -- Made by Xemt on Github
+-- Made to work in Roblox Studio Scripts
 -- This is from what I remember (Can't access computer at the moment)
 i = 0
 acc = 0
