@@ -30,6 +30,17 @@ players.PlayerAdded:Connect(function(playa)
       Chat:Chat(playa.character, c, Enum.ChatColor.White)
      end
     end
+    if args[1] == “input“ then
+     if args[2] == “a“ then
+
+     end
+     if args[2] == “b“ then
+
+     end
+     if args[2] == “c“ then
+
+     end
+    end
     if args[1] == "set" then
      if args[2] == "a" then
       a = math.random(0, 32767)
