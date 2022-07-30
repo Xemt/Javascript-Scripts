@@ -1,4 +1,5 @@
 -- Made by Xemt on Github
+-- Made for Roblox 🤠
 -- This is an attempt, and hasn't been tested yet
 a = 0 -- First DS Var
 b = 0 -- Second DS Var
