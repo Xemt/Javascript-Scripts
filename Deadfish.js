@@ -1,6 +1,6 @@
 // some code originally from "https://esolangs.org/wiki/Deadfish#HTML_.3F_Javascript"
 // Also this thing was made by Xemt on Github 😃😃
-// Made for the Scriptable app
+// Made to work in the Scriptable app
 var val = 0;
 var i = 0
 async function interpret() {
