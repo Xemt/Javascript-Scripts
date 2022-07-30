@@ -6,7 +6,7 @@ var i = 0
 async function interpret() {
  var tm = new Timer()
  tm.repeats = false
- tm.timeInterval = 2000 // Make it wait 2 seconds before restarting
+ tm.timeInterval = 400 // Make it wait before restarting
  var input = new Alert()
  input.title = "Input? (a is " + a + ", b is " + b + ", and c is " + c + ")"
  input.addTextField()
@@ -28,6 +28,35 @@ async function interpret() {
    if (arg[1] === "a") { console.log(a) }
    if (arg[1] === "b") { console.log(b) }
    if (arg[1] === "c") { console.log(c) }
+  }
+  if (cmd === "input") {
+   if (arg[1] === "a") { 
+    i = 2
+    while (i !== arg.length) {
+     var tot = tot + arg[i] + " "
+     if (tot.includes("undefined")) { tot = arg[i] + " "}
+     i++
+    }
+    a = tot
+   }
+   if (arg[1] === "b") { 
+    i = 2
+    while (i !== arg.length) {
+     var tot = tot + arg[i] + " "
+     if (tot.includes("undefined")) { tot = arg[i] + " " }
+      i++
+     }
+     b = tot
+   }
+   if (arg[1] === "c") { 
+    i = 2
+    while (i !== arg.length) {
+     var tot = tot + arg[i] + " "
+     if (tot.includes("undefined")) { tot = arg[i] + " " }
+      i++
+     }
+     c = tot
+   }
   }
   if (cmd === "set") {
    if (arg[1] === "a") { a = Math.floor(Math.random() * 32768) }
