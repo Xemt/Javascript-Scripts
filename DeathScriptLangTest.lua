@@ -32,7 +32,12 @@ players.PlayerAdded:Connect(function(playa)
     end
     if args[1] == "input" then
      if args[2] == "a" then
-
+      i = 2
+      while i ~= #args do
+       i = i + 1
+       local tot = tot..args[i].." "
+       -- Incomplete
+      end
      end
      if args[2] == "b" then
 
