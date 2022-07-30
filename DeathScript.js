@@ -1,5 +1,5 @@
 // Made by Xemt on Github 😃😃
-// Made for the Scriptable app
+// Made to work in the Scriptable app
 var a = 0 // First DS Variable
 var b = 0 // Second DS Variable
 var c = 0 // Third DS Variable
