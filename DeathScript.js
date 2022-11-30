@@ -1,5 +1,5 @@
 // Made by Xemt on Github 😃😃
-// Made to work in the Scriptable app
+// Works in the Scriptable App. Also, this may be incomplete.
 var a = 0 // First DS Variable
 var b = 0 // Second DS Variable
 var c = 0 // Third DS Variable
@@ -95,12 +95,9 @@ async function interpret() {
     c = cur.get("cura")
    }
   }
-  function restart() {
-   interpret()
-  }
-  tm.schedule(restart)
+  tm.schedule(interpret)
  } else {
-  console.log("Cancelled")
+  log("Cancelled")
  }
 }
 interpret()
