@@ -1,4 +1,4 @@
-// Xemt, 7/28/22 - 1/29/24.
+/* Xemt, 7/28/22 - 4/5/24. */
 
 "use strict";
 
@@ -7,9 +7,9 @@
  * @param {?string} msg
  * @returns {any}
 */
-async function my_prompt(msg = null)
+function my_prompt(msg = null)
 {
-	// We're using Scriptable, use Alert instead.
+	/* We're using Scriptable, use Alert instead. */
 	if ( typeof(_scriptable_run) == "function" ) {
 		let alert = new Alert();
 		let btn;
@@ -20,7 +20,7 @@ async function my_prompt(msg = null)
 		alert.addAction("OK");
 		alert.addCancelAction("Cancel");
 
-		btn = alert.present().then(undefined, undefined);
+		btn = alert.present().then(undefined, (err) => { throw err; });
 
 		if (btn == BTN_CANCEL) {
 			return "";
@@ -28,11 +28,11 @@ async function my_prompt(msg = null)
 
 		return alert.textFieldValue(0);
 	}
-
+	
 	return prompt(msg);
 }
 
-var input = my_prompt("Deadfish code?").then(undefined, undefined);
+var input = my_prompt("Deadfish code?");
 var acc = 0;
 var i = 0;
 
