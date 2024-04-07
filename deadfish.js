@@ -36,6 +36,7 @@ function my_prompt(msg = null)
 {
 	/* We're using Scriptable, use Alert instead. */
 	if ( typeof(_scriptable_run) == "function" ) {
+		const BTN_CANCEL = -1;
 		let alert = new Alert();
 		let btn;
 
@@ -66,7 +67,7 @@ while (i < input.length) {
 		acc = 0;
 	}
 
-	switch (input.at[i]) {
+	switch ( input.charAt(i) ) {
 		case "i":
 			acc++;
 		break;
