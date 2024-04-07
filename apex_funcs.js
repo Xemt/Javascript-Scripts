@@ -1,6 +1,6 @@
 /**
  * @author Xemt <https://github.com/Xemt/>.
- * @description 3/8/24 - 4/5/24. Useful functions for Apex Learning. Copy and
+ * @description 3/8/24 - 4/7/24. Useful functions for Apex Learning. Copy and
  * paste the code, and call whatever function you intend on using.
  *
  * MIT License
@@ -39,14 +39,13 @@ if ( !/apex(vs|learning)/.test(location.hostname) ) {
 */
 function apex_get_quest_txt()
 {
-	/* RegEx idea is from https:///www.youtube.com/shorts/scUvtg1B9I4. */
+	/* RegExp idea is from https:///www.youtube.com/shorts/scUvtg1B9I4. */
 	var html_re = /<(\/)?[^>]*>/;
-	var quest_elem = document
-		.querySelector("kp-sia-question")
-		.children
-		.item(0)
-		.children
-		.item(0);
+	var quest_elem = document.querySelector("kp-sia-question")
+													.children
+													.item(0)
+													.children
+													.item(0);
 	var quest_txt = quest_elem.innerHTML;
 
 	while (html_re.test(quest_txt) === true) {
@@ -58,12 +57,24 @@ function apex_get_quest_txt()
 
 /**
  * @description Tries to goto whatever page of whatever you're doing in Apex.
+ * @throws {RangeError} Number is signed, NaN, or not finite.
  * @param {Number} pageno - The page number to goto.
  * @returns {void}
 */
 function apex_goto_page(pageno)
 {
-	/* TODO: complete this. */
+	var pageno_re = /(?<=(\/page\/))\d+/;
+
+	if ((pageno < 0)  || 
+			isNaN(pageno) ||
+			(isFinite(pageno) == false))
+	{
+		throw new Error("apex_goto_page: Invalid argument.");
+	}
+
+	location.pathname = location.pathname.replace(pageno_re, pageno);
+
+	return undefined;
 }
 
 /**
@@ -74,7 +85,7 @@ function apex_goto_last_page()
 {
 	var pageno_re = /(?<=(\/page\/))\d+/;
 	/* The first number from the page number indicator. Example: "1" from
-           "1 of 5". */
+     "1 of 5". */
 	var last_pageno = document.querySelectorAll('[class="nav-section"]')[1].innerText.split(" ")[2];
 	
 	location.pathname = location.pathname.replace(pageno_re, last_pageno);
