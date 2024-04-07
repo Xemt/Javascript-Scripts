@@ -66,8 +66,8 @@ function apex_goto_page(pageno)
 	var pageno_re = /(?<=(\/page\/))\d+/;
 
 	if ((pageno < 0)  || 
-			isNaN(pageno) ||
-			(isFinite(pageno) == false))
+	    isNaN(pageno) ||
+	    (isFinite(pageno) == false))
 	{
 		throw new Error("apex_goto_page: Invalid argument.");
 	}
