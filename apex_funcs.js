@@ -28,24 +28,27 @@
 
 "use strict";
 
+var PAGENO_RE = /(?<=(\/page\/))\d+/;
+var ERR_BAD_CTX = "Oops, you're using this function in the wrong context. You must use this where there are pages.";
+
 if ( /apex(vs|learning)/.test(location.hostname) === false ) {
 	throw new Error("Must be on an Apex page!");
 }
 
-var PAGENO_RE = /(?<=(\/page\/))\d+/;
-
 /**
  * @description Gets the question on the test or quiz that you're doing.
- * @returns {?string} Returns null if we're not on a test or a quiz.
+ * @throws {Error} We're not on a test or a quiz.
+ * @returns {String}
 */
 function apex_get_question()
 {
+	if ( !location.pathname.endsWith("assessment") ) {
+		var err_msg = "apex_get_question: ".concat("Not on a test or a quiz.");
+		throw new Error(err_msg);
+	}
+	
 	/* RegExp idea is from https:///www.youtube.com/shorts/scUvtg1B9I4. */
 	var html_re = /<(\/)?[^>]*>/;
-
-	if (location.hostname.test() ) {
-		return null;
-	}
 	var quest_elem = document.querySelector("kp-sia-question").children.item(0).children.item(0);
 	var quest_txt = quest_elem.innerHTML;
 
@@ -59,13 +62,19 @@ function apex_get_question()
 
 /**
  * @description Tries to goto whatever page of whatever you're doing in Apex.
+ * @throws {Error} Using this function in the wrong context.
  * @throws {RangeError} Number is signed, NaN, or not finite.
  * @param {Number} pageno - The page number to goto.
  * @returns {void}
 */
 function apex_goto_page(pageno)
 {
-	if ((pageno < 0)  || isNaN(pageno) || (isFinite(pageno) == false)) {
+	if ( !location.hostname.test(PAGENO_RE) ) {
+		var err_msg = "apex_goto_page: ".concat(ERR_BAD_CTX);
+		throw new Error(err_msg);
+	}
+	
+	if (pageno < 0 || isNaN(pageno) || !isFinite(pageno)) {
 		throw new Error("apex_goto_page: Invalid argument.");
 	}
 
@@ -75,13 +84,15 @@ function apex_goto_page(pageno)
 }
 
 /**
- * @description Tries to goto the last page of whatever you're doing in Apex.
+ * @description Tries to goto the last page of whatever you're doing.
+ * @throws {Error} Using this function in the wrong context.
  * @returns {void}
 */
 function apex_goto_last_page()
 {	
 	if ( !location.pathname.test(PAGENO_RE) ) {
-		return undefined;
+		var err_msg = "apex_goto_last_page: ".concat(ERR_BAD_CTX);
+		throw new Error(err_msg);
 	}
 	
 	/* The first number from the page number indicator. Example: "1" from
