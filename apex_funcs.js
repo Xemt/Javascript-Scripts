@@ -62,7 +62,7 @@ function apex_get_question()
 			/* We're dealing with an image element inside the HTML string. Only extract the
                            image's alt text. */
 			if (mat.match(/alt="/) !== null) {
-				repl = mat.match(/(?=(alt\=")).+(?=(\"))/);
+				repl = mat.match(/(?<=(alt\=")).+(?=(\"))/g)[0];
 			} else {
 				repl = "";
 			}
