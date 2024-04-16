@@ -54,8 +54,6 @@ function apex_get_question()
 
 	/* Strip any, and every HTML element. */
 	while (html_re.test(quest_txt) === true) {
-		console.log(quest_txt);
-		
 		quest_txt = quest_txt.replace(html_re, function(mat) {
 			var repl = null;
 
@@ -67,8 +65,6 @@ function apex_get_question()
 				repl = "";
 			}
 
-			console.log(repl);
-			
 			return repl;
 		});
 	}
