@@ -53,7 +53,7 @@ function apex_get_question()
 	var quest_txt = quest_elem.innerHTML;
 
 	/* Strip any, and every HTML element. */
-	while (html_re.test(quest_html) === true) {
+	while (html_re.test(quest_txt) === true) {
 		quest_txt = quest_txt.replace(html_re, "");
 	}
 
