@@ -54,7 +54,23 @@ function apex_get_question()
 
 	/* Strip any, and every HTML element. */
 	while (html_re.test(quest_txt) === true) {
-		quest_txt = quest_txt.replace(html_re, "");
+		console.log(quest_txt);
+		
+		quest_txt = quest_txt.replace(html_re, function(mat) {
+			var repl = null;
+
+			/* We're dealing with an image element inside the HTML string. Only extract the
+                           image's alt text. */
+			if (mat.match(/alt="/) !== null) {
+				repl = mat.match(/(?=(alt\=")).+(?=(\"))/);
+			} else {
+				repl = "";
+			}
+
+			console.log(repl);
+			
+			return repl;
+		});
 	}
 
 	return quest_txt;
