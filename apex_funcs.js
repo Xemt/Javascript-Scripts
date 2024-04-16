@@ -1,6 +1,6 @@
 /**
  * @author Xemt <https://github.com/Xemt/>.
- * @description 3/8/24 - 4/15/24. Useful functions for Apex Learning. Copy and
+ * @description 3/8/24 - 4/16/24. Useful functions for Apex Learning. Copy and
  * paste the code, and call whatever function you intend on using.
  *
  * MIT License
