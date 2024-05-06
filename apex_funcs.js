@@ -58,7 +58,7 @@ function apex_get_question()
 			var repl = null;
 
 			/* We're dealing with an image element inside the HTML string. Only extract the
-                           image's alt text. */
+	       image's alt text. */
 			if (mat.match(/alt="/) !== null) {
 				repl = mat.match(/(?<=(alt\=")).+(?=(\"))/g)[0];
 			} else {
@@ -81,7 +81,7 @@ function apex_get_question()
 */
 function apex_goto_page(pageno)
 {
-	if (location.hostname.test(PAGENO_RE) === false) {
+	if (PAGENO_RE.test(location.hostname) === false) {
 		var err_msg = "apex_goto_page: ".concat(ERR_BAD_CTX);
 		throw new Error(err_msg);
 	}
@@ -102,13 +102,13 @@ function apex_goto_page(pageno)
 */
 function apex_goto_last_page()
 {	
-	if (location.pathname.test(PAGENO_RE) === false) {
+	if (PAGENO_RE.test(location.pathname) === false) {
 		var err_msg = "apex_goto_last_page: ".concat(ERR_BAD_CTX);
 		throw new Error(err_msg);
 	}
 	
 	/* The first number from the page number indicator. Example: "1" from
-           "1 of 5". */
+     "1 of 5". */
 	var last_pageno = document.querySelectorAll('[class="nav-section"]')[1].innerText.split(" ")[2];
 	
 	location.pathname = location.pathname.replace(PAGENO_RE, last_pageno);
