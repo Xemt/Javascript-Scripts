@@ -64,7 +64,6 @@ function apex_get_question()
 				replacement = html_str.match(/(?<=(alt\=")).+(?=(\"))/g)[0];
 				/* Should fix that issue. */
 				replacement = replacement.replace(/style[^;]+;/, "");
-				replacement = replacement.replace(/Click here for long description/, "");
 			} else {
 				replacement = "";
 			}
@@ -72,6 +71,8 @@ function apex_get_question()
 			return (replacement);
 		});
 	}
+
+	quest_txt = quest_txt.replace("Click here for long description", "");
 
 	return (quest_txt);
 }
