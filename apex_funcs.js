@@ -1,6 +1,6 @@
 /**
  * @author Xemt <https://github.com/Xemt/>.
- * @description 3/8/24 - 5/6/24. Useful functions for Apex Learning. Copy and
+ * @description 3/8/24 - 5/12/24. Useful functions for Apex Learning. Copy and
  * paste the code, and call whatever function you intend on using.
  *
  * MIT License
@@ -54,22 +54,24 @@ function apex_get_question()
 
 	/* Strip any, and every HTML element. */
 	while (html_re.test(quest_txt) === true) {
-		quest_txt = quest_txt.replace(html_re, function(mat) {
-			var repl = null;
+		quest_txt = quest_txt.replace(html_re, function(html_str) {
+			var replacement = null;
 
 			/* We're dealing with an image element inside the HTML string. Only extract the
-	       image's alt text. */
-			if (mat.match(/alt="/) !== null) {
-				repl = mat.match(/(?<=(alt\=")).+(?=(\"))/g)[0];
+                           image's alt text. */
+			if (html_str.match(/alt="/) !== null) {
+				/* TODO: Fix issue where an inline style isn't removed. */
+				replacement = html_str.match(/(?<=(alt\=")).+(?=(\"))/g)[0];
+				
 			} else {
-				repl = "";
+				replacement = "";
 			}
 
-			return repl;
+			return (replacement);
 		});
 	}
 
-	return quest_txt;
+	return (quest_txt);
 }
 
 /**
@@ -80,7 +82,7 @@ function apex_get_question()
  * @returns {void}
 */
 function apex_goto_page(pageno)
-{
+{ 
 	if (PAGENO_RE.test(location.hostname) === false) {
 		var err_msg = "apex_goto_page: ".concat(ERR_BAD_CTX);
 		throw new Error(err_msg);
@@ -92,7 +94,7 @@ function apex_goto_page(pageno)
 
 	location.pathname = location.pathname.replace(PAGENO_RE, pageno);
 
-	return undefined;
+	return (undefined);
 }
 
 /**
@@ -108,10 +110,10 @@ function apex_goto_last_page()
 	}
 	
 	/* The first number from the page number indicator. Example: "1" from
-     "1 of 5". */
+           "1 of 5". */
 	var last_pageno = document.querySelectorAll('[class="nav-section"]')[1].innerText.split(" ")[2];
 	
 	location.pathname = location.pathname.replace(PAGENO_RE, last_pageno);
 	
-	return undefined;
+	return (undefined);
 }
