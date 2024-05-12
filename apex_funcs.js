@@ -62,7 +62,9 @@ function apex_get_question()
 			if (html_str.match(/alt="/) !== null) {
 				/* TODO: Fix issue where an inline style isn't removed. */
 				replacement = html_str.match(/(?<=(alt\=")).+(?=(\"))/g)[0];
-				
+				/* Should fix that issue. */
+				replacement = replacement.replace(/style[^;]+;/, "");
+				replacement = replacement.replace(/Click here for long description/, "");
 			} else {
 				replacement = "";
 			}
